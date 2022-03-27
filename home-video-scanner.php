@@ -121,8 +121,9 @@ foreach ($hash as $key => $files)
 	}
 
 	/* Check if we've known of this file before and have chosen not to show it in plex via 'unlist' boolean */
-	if (isset($storage[$key]['unlist']) && $storage[$key]['unlist'])
+	if (isset($storage[$key]['debug']['unlist']) && $storage[$key]['debug']['unlist'])
 	{
+		echo "not creating $key due to unlist flag\n";
 		continue;
 	}
 
