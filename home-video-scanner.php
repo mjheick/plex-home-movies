@@ -120,6 +120,12 @@ foreach ($hash as $key => $files)
 		continue;
 	}
 
+	/* Check if we've known of this file before and have chosen not to show it in plex via 'unlist' boolean */
+	if (isset($storage[$key]['unlist']) && $storage[$key]['unlist'])
+	{
+		continue;
+	}
+
 	/* make the symlink if it doesn't exist */
 	$pathinfo = pathinfo($files[0]);
 	$extension = strtolower($pathinfo['extension']);
