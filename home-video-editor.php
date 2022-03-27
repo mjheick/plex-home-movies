@@ -19,15 +19,11 @@ if ( isset($_POST['title']) && (strlen($_POST['title']) > 0) ) /* Doing a search
 	$title = $_POST['title'];
 	foreach ($data as $key => $value)
 	{
-		if (isset($value['title']))
-		{
-			if (strpos(strtolower($value['title']), strtolower($title)) !== false)
-			{
-				$results[] = $key;
-			}
+		if (isset($value['title']) && strpos(strtolower($value['title']), strtolower($title)) !== false)
+			$results[] = $key;
 		}
 	}
-	if (count($results) === 0)
+	if (empty($results) === 0)
 	{
 		$mode = 'search';
 		$error = "search &quot;$title&quot; not found";
@@ -52,7 +48,7 @@ if (isset($_GET['edit']))
 if ($mode === 'search')
 {
 	?><!doctype html>
-<html>
+<html lang="en">
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
@@ -79,7 +75,7 @@ if (strlen($error) > 0)
 if ($mode === 'results')
 {
 	?><!doctype html>
-<html>
+<html lang="en">
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
@@ -102,7 +98,7 @@ if ($mode === 'results')
 if ($mode === 'edit')
 {
 	?><!doctype html>
-<html>
+<html lang="en">
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>

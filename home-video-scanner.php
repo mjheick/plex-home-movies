@@ -9,6 +9,7 @@
 /* Variables */
 $source_folder = '/mnt/usb14/Archive';
 $destination_folder = '/mnt/usb14/Home-Video';
+$desination_filename = 'home-video-scanner.yml';
 $file_extensions = ['3g2', '3gp', 'avi', 'mov', 'mp4', 'mpg', 'mts', 'webm', 'wmv'];
 $files = [];
 
@@ -93,11 +94,11 @@ foreach ($files as $file)
 
 /* Set up our persistent storage and load it up */
 $storage = [];
-if (!file_exists($destination_folder . '/' . 'home-video-scanner.yml'))
+if (!file_exists($destination_folder . '/' . $desination_filename))
 {
-	file_put_contents($destination_folder . '/' . 'home-video-scanner.yml', yaml_emit($storage));
+	file_put_contents($destination_folder . '/' . $desination_filename, yaml_emit($storage));
 }
-$storage = yaml_parse(file_get_contents($destination_folder . '/' . 'home-video-scanner.yml'));
+$storage = yaml_parse(file_get_contents($destination_folder . '/' . $desination_filename));
 
 /**
  * Loop through what we have, write it to persistent storage and make our first nfo files if we need to
@@ -179,4 +180,4 @@ foreach ($hash as $key => $files)
 }
 
 /* Write out the persistent storage */
-file_put_contents($destination_folder . '/' . 'home-video-scanner.yml', yaml_emit($storage));
+file_put_contents($destination_folder . '/' . $desination_filename, yaml_emit($storage));
